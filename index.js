@@ -53,6 +53,12 @@ client.on('messageCreate', async (message) => {
         return message.reply('Please provide text to add to the image.');
       }
     }
+    else if(command =="test" && message.attachments.size>0){
+      const image = await Jimp.read(message.attachments.first());
+      image.resize({ width: 100 });
+      await image.write("output.png");
+      message.reply(files[output.png]);
+    }
     else if (command === 'textabove' && message.attachments.size > 0) {
         console.log("message.attachments");
         console.log(message.attachments);
