@@ -1,0 +1,25 @@
+{
+  "name": "bajobot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo Error: no test specified && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Floskoti2/BajoBot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Floskoti2/BajoBot/issues"
+  },
+  "homepage": "https://github.com/Floskoti2/BajoBot#readme",
+  "description": "",
+  "dependencies": {
+    "canvas": "^3.1.0",
+    "discord.js": "^14.18.0"
+  }
+}
