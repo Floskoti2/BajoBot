@@ -86,7 +86,6 @@ module.exports = {
         (async () => {
             const result = await translator.translateText(text.trim(), 'SL', 'en-GB');
             console.log(result.text);
-            message.reply(`Extracted Text:\n\`\`\`\n${result.text}\n\`\`\``);
 
             const width = image.width;
             const height = image.height;
