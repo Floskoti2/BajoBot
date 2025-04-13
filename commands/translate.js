@@ -84,7 +84,7 @@ module.exports = {
         const translator = new deepl.Translator(authKey);
     
         (async () => {
-            const result = await translator.translateText(text.trim(), null, 'en-GB');
+            const result = await translator.translateText(text.trim(), 'SL', 'en-GB');
             console.log(result.text);
             message.reply(`Extracted Text:\n\`\`\`\n${result.text}\n\`\`\``);
 
