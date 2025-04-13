@@ -1,4 +1,6 @@
 const Canvas = require('canvas');
+const GIFEncoder = require('gif-encoder-2');
+const { Readable } = require('stream');
 
 module.exports = {
   name: 'frame',
@@ -61,7 +63,24 @@ module.exports = {
     // Draw the image in the center
     ctx.drawImage(image, padding, padding);
 
-    const buffer = canvas.toBuffer();
-    message.channel.send({ files: [{ attachment: buffer, name: 'framed.png' }] });
+    // Create encoder and write one frame
+    const encoder = new GIFEncoder(width + padding * 2, height + padding * 2);
+        encoder.start();
+        encoder.setRepeat(0); // 0 = loop forever
+        encoder.setDelay(1000); // Frame delay in ms
+        encoder.setQuality(10);
+    
+        encoder.addFrame(ctx);
+        encoder.finish();
+    
+        const buffer = encoder.out.getData();
+        const stream = Readable.from(buffer);
+    
+        message.channel.send({
+          files: [{
+            attachment: stream,
+            name: 'test.gif'
+          }]
+        });
   }
 };

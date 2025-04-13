@@ -1,4 +1,6 @@
 const Canvas = require('canvas');
+const GIFEncoder = require('gif-encoder-2');
+const { Readable } = require('stream');
 
 module.exports = {
   name: 'uncaption',
@@ -48,7 +50,7 @@ module.exports = {
     };
 
     let cropTop = 0;
-    let threshold = 0.75; // % of white pixels across width to consider a row as "white space"
+    let threshold = 0.40; // % of white pixels across width to consider a row as "white space"
     const scanHeight = Math.floor(height * 0.5); // scan only top half
 
     for (let y = 0; y < scanHeight; y++) {
@@ -74,7 +76,24 @@ module.exports = {
     const outputCtx = outputCanvas.getContext('2d');
     outputCtx.drawImage(image, 0, cropTop, width, croppedHeight, 0, 0, width, croppedHeight);
 
-    const buffer = outputCanvas.toBuffer();
-    message.channel.send({ files: [{ attachment: buffer, name: 'uncaptioned.png' }] });
+    // Create encoder and write one frame
+    const encoder = new GIFEncoder(width, croppedHeight);
+    encoder.start();
+    encoder.setRepeat(0); // 0 = loop forever
+    encoder.setDelay(1000); // Frame delay in ms
+    encoder.setQuality(10);
+    
+    encoder.addFrame(outputCtx); // Use outputCtx which has the cropped image
+    encoder.finish();
+    
+    const buffer = encoder.out.getData();
+    const stream = Readable.from(buffer);
+    
+    message.channel.send({
+      files: [{
+        attachment: stream,
+        name: 'test.gif'
+      }]
+    });
   }
 };

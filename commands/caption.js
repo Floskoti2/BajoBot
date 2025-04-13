@@ -1,5 +1,7 @@
 const Canvas = require('canvas');
-//Canvas.registerFont('C:/Users/User/Desktop/BajoBot/Fonts/FuturaExtraBlackCondensedRegular.otf', { family: 'CustomFont' });
+const GIFEncoder = require('gif-encoder-2');
+const { Readable } = require('stream');
+Canvas.registerFont('C:/Users/User/Desktop/BajoBot/Fonts/FuturaExtraBlackCondensedRegular.otf', { family: 'CustomFont', style: 'FuturaExtraBlackCondensedRegular'});
 
 
 module.exports = {
@@ -57,9 +59,8 @@ module.exports = {
     // Background for text
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height/4);
-
     // Bold centered text
-    ctx.font = `${height/4/3}px CustomFont`;
+    ctx.font = `${height/4/3}px CustomFont`; 
     ctx.fillStyle = 'black';
     const text = args.join(' ');
     const textWidth = ctx.measureText(text).width;
@@ -68,8 +69,24 @@ module.exports = {
     ctx.fillText(text, x, height/4/3 * 2);
 
     ctx.drawImage(image, 0, height/4, width, height);
-    const buffer = canvas.toBuffer();
     
-    message.channel.send({ files: [{ attachment: buffer, name: 'output.png' }] });
+    const encoder = new GIFEncoder(width, height + height/5);
+        encoder.start();
+        encoder.setRepeat(0); // 0 = loop forever
+        encoder.setDelay(1000); // Frame delay in ms
+        encoder.setQuality(10);
+    
+        encoder.addFrame(ctx);
+        encoder.finish();
+    
+        const buffer = encoder.out.getData();
+        const stream = Readable.from(buffer);
+    
+        message.channel.send({
+          files: [{
+            attachment: stream,
+            name: 'test.gif'
+          }]
+        });
   }
 };
