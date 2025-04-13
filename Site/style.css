@@ -70,15 +70,39 @@ a.button:hover {
 .gifContainer {
   position: relative;
   width: 100%; /* Set the width of the container */
-
+}
 .gif {
   width: 100%; /* Make the GIF fill the container */
   height: auto; /* Maintain aspect ratio */
 }
-.png {
+
+.pngCaption {
   position: absolute;
-  top: -13%; /* Adjust this value to move the PNG vertically */
-  left: 65%; /* Adjust this value to move the PNG horizontally */
+  top: -8%; /* Adjust this value to move the PNG vertically */
+  left: 68%; /* Adjust this value to move the PNG horizontally */
+  width: 30%; /* Set the width of the PNG */
+  height: auto; /* Maintain aspect ratio */
+}
+.pngInvert {
+  position: absolute;
+  top: 60%; /* Adjust this value to move the PNG vertically */
+  left: 0%; /* Adjust this value to move the PNG horizontally */
+  width: 30%; /* Set the width of the PNG */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.pngDeepFry {
+  position: absolute;
+  top: -15%; /* Adjust this value to move the PNG vertically */
+  left: 60%; /* Adjust this value to move the PNG horizontally */
+  width: 30%; /* Set the width of the PNG */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.pngBubble {
+  position: absolute;
+  top: 60%; /* Adjust this value to move the PNG vertically */
+  left: 60%; /* Adjust this value to move the PNG horizontally */
   width: 30%; /* Set the width of the PNG */
   height: auto; /* Maintain aspect ratio */
 }
