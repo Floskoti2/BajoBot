@@ -40,7 +40,7 @@ module.exports = {
     const sliceHeight = 4;
 
     for (let y = 0; y < height; y += sliceHeight) {
-      const offset = Math.sin(y / 20) * 10; // Distortion strength
+      const offset = Math.sin(y / 20) * 20; // Distortion strength
       ctx.drawImage(image,
         0, y, width, sliceHeight,       // Source slice
         offset, y, width, sliceHeight   // Destination with offset

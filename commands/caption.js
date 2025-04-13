@@ -7,8 +7,6 @@ Canvas.registerFont('C:/Users/User/Desktop/BajoBot/Fonts/FuturaExtraBlackCondens
 module.exports = {
   name: 'caption',
   async execute(message, args) {
-
-    
     // Find an image to use
     let imageAttachment = null;
     
@@ -54,13 +52,11 @@ module.exports = {
     console.log(width)
     const ctx = canvas.getContext('2d');
 
-    
-
     // Background for text
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, width, height/4);
     // Bold centered text
-    ctx.font = `${height/4/3}px CustomFont`; 
+    ctx.font = `${height/4/3}px Bold`; 
     ctx.fillStyle = 'black';
     const text = args.join(' ');
     const textWidth = ctx.measureText(text).width;
