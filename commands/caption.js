@@ -1,7 +1,7 @@
 const Canvas = require('canvas');
 const GIFEncoder = require('gif-encoder-2');
 const { Readable } = require('stream');
-Canvas.registerFont('C:/Users/User/Desktop/BajoBot/Fonts/FuturaExtraBlackCondensedRegular.otf', { family: 'CustomFont', style: 'FuturaExtraBlackCondensedRegular'});
+Canvas.registerFont('./Fonts/FuturaExtraBlackCondensedRegular.otf', { family: 'CustomFont', style: 'FuturaExtraBlackCondensedRegular'});
 
 
 module.exports = {
